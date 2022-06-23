@@ -1,0 +1,19 @@
+{
+  "name": "ws-scrcpy",
+  "version": "0.8.0-dev",
+  "description": "Web client for scrcpy and more",
+  "author": "Sergey Volkov <s.volkov@netris.ru>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "dependencies": {
+    "@devicefarmer/adbkit": "2.11.3",
+    "express": "4.17.3",
+    "node-pty": "0.10.1",
+    "portfinder": "1.0.28",
+    "tslib": "2.3.1",
+    "ws": "8.5.0",
+    "yaml": "2.0.0"
+  }
+}

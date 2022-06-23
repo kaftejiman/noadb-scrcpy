@@ -1,0 +1,600 @@
+:root {
+    --main-bg-color: hsl(0, 0%, 100%);
+    --stream-bg-color: hsl(0, 0%, 85%);
+    --shell-bg-color: hsl(0, 0%, 0%);
+    --text-shadow-color: hsl(218, 67%, 95%);
+    --header-bg-color: hsl(0, 0%, 95%);
+    --controls-bg-color: hsla(0, 0%, 95%, 0.8);
+    --control-buttons-bg-color: hsl(0, 0%, 95%);
+    --text-color: hsl(210, 16%, 22%);
+    --text-color-light: hsl(200, 16%, 52%);
+    --link-color: hsl(218, 85%, 43%);
+    --link-color-light: hsl(218, 85%, 73%);
+    --link-color_visited: hsl(271, 68%, 32%);
+    --link-color_visited-light: hsl(271, 68%, 72%);
+    --svg-checkbox-bg-color: hsl(172, 100%, 37%);
+    --svg-button-fill: hsl(199, 17%, 46%);
+    --kill-button-hover-color: hsl(342, 100%, 37%);
+    --url-color: hsl(0, 0%, 60%);
+    --button-text-color: hsl(214, 82%, 51%);
+    --button-border-color: hsl(0, 0%, 70%);
+    --progress-background-color: hsla(225, 100%, 50%, 0.2);
+    --progress-background-error-color: hsla(0, 100%, 50%, 0.2);
+    --font-size: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --main-bg-color: hsl(0, 0%, 14%);
+        --stream-bg-color: hsl(0, 0%, 20%);
+        --shell-bg-color: hsl(0, 0%, 0%);
+        --text-shadow-color: hsl(218, 17%, 18%);
+        --header-bg-color: hsl(0, 0%, 20%);
+        --controls-bg-color: hsla(201, 18%, 19%, 0.8);
+        --control-buttons-bg-color: hsl(201, 18%, 19%);
+        --text-color: hsl(0, 0%, 90%);
+        --text-color-light: hsl(0, 0%, 60%);
+        --link-color: hsl(218, 63%, 70%);
+        --link-color-light: hsl(218, 63%, 50%);
+        --link-color_visited: hsl(267, 31%, 47%);
+        --link-color_visited-light: hsl(267, 31%, 27%);
+        --svg-checkbox-bg-color: hsl(172, 100%, 27%);
+        --svg-button-fill: hsl(0, 0%, 100%);
+        --kill-button-hover-color: hsl(342, 100%, 27%);
+        --url-color: hsl(0, 0%, 60%);
+        --device-list-stripe-color: hsl(0, 0%, 16%);
+        --device-list-default-color: hsl(0, 0%, 14%);
+        --button-text-color: hsl(214, 82%, 76%);
+        --button-border-color: hsl(213, 5%, 39%);
+        --progress-background-color: hsla(225, 100%, 50%, 0.2);
+        --progress-background-error-color: hsla(0, 100%, 50%, 0.2);
+    }
+}
+
+html {
+    font-size: var(--font-size);
+}
+
+a {
+    color: var(--link-color);
+}
+
+a:visited {
+    color: var(--link-color_visited);
+}
+
+body {
+    color: var(--text-color);
+    background-color: var(--main-bg-color);
+    position: absolute;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+
+body.shell {
+    background-color: var(--shell-bg-color);
+}
+
+body.stream {
+    background-color: var(--stream-bg-color);
+}
+
+.terminal-container {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+}
+
+:focus {
+    outline: none;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+}
+
+.wait {
+    cursor: wait;
+}
+
+.device-view {
+    z-index: 1;
+    float: right;
+    display: inline-block;
+}
+
+.video-layer {
+    position: absolute;
+    z-index: 0;
+}
+
+.touch-layer {
+    position: absolute;
+    z-index: 1;
+}
+
+.video {
+    float: right;
+    max-height: 100%;
+    max-width: 100%;
+    background-color: #000000;
+}
+
+
+.control-buttons-list {
+    float: right;
+    width: 3.715rem;
+    background-color: var(--control-buttons-bg-color);
+}
+
+.control-button {
+    margin: .357rem .786rem;
+    padding: 0;
+    width: 2.143rem;
+    height: 2.143rem;
+    border: none;
+    opacity: 0.75;
+    background-color: var(--control-buttons-bg-color);
+}
+
+.control-button:hover {
+    opacity: 1;
+}
+
+.control-wrapper > input[type=checkbox] {
+    display: none;
+}
+
+.control-wrapper > label {
+    display: inline-block;
+}
+
+.control-button > svg {
+    fill: var(--svg-button-fill);
+}
+
+.control-wrapper > input[type=checkbox].two-images:checked + label > svg.image-on {
+    display: block;
+}
+
+.control-wrapper > input[type=checkbox].two-images:not(:checked) + label > svg.image-on {
+    display: none;
+}
+
+.control-wrapper > input[type=checkbox].two-images:checked + label > svg.image-off {
+    display: none;
+}
+
+.control-wrapper > input[type=checkbox].two-images:not(:checked) + label > svg.image-off {
+    display: block;
+}
+
+.control-wrapper > input[type=checkbox]:checked + label > svg {
+    fill: var(--svg-checkbox-bg-color);
+}
+
+.text-area {
+    width: 100%;
+    resize: vertical;
+}
+
+.more-box {
+    display: none;
+    position: absolute;
+    background-color: var(--controls-bg-color);
+    z-index: 2;
+    padding: 0 .714rem .714rem .714rem;
+}
+
+.text-with-shadow, .more-box label {
+    color: var(--text-color);
+    text-shadow: var(--text-shadow-color) 0 0 .357rem;
+}
+
+.spoiler > input ~ .box {
+    display: none;
+}
+
+.spoiler > input:checked ~ .box {
+    display: block;
+}
+
+.spoiler > label::before {
+    content: '►';
+    margin-right: 5px;
+}
+
+.spoiler > input:checked ~ label::before {
+    content: '▼';
+}
+
+.spoiler > input:checked ~ div {
+    display: block;
+    padding: 10px;
+}
+
+.spoiler > input {
+    display: none;
+}
+
+:root {
+    --block-top-padding: 0.5rem;
+    --block-bottom-padding: 0.5rem;
+    --button-top-padding: 0.2rem;
+    --button-bottom-padding: 0.2rem;
+    --header-height: 3rem;
+    --footer-height: 1.55rem;
+}
+
+.dialog-background {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 3;
+}
+
+.dialog-container {
+    font-family: monospace;
+    width: 75%;
+    max-width: 30rem;
+    min-width: 20rem;
+    background-color: var(--main-bg-color);
+    /*border-radius: 0.3rem;*/
+    overflow: hidden;
+}
+
+.dialog-container.ready {
+    height: 100%;
+    min-height: 100%;
+}
+
+.dialog-container button, .dialog-container select, .dialog-container input {
+    font-family: monospace;
+}
+
+.dialog-container button {
+    font-size: var(--font-size);
+}
+
+.dialog-container select {
+    text-overflow: ellipsis;
+}
+
+.dialog-block {
+}
+
+.dialog-header {
+    background-color: var(--header-bg-color);
+    height: var(--header-height);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    width: auto;
+    position: initial;
+}
+
+.dialog-header span.dialog-title {
+    display: inline-block;
+    padding: 0 0.5rem;
+}
+
+.dialog-body {
+    padding: var(--block-top-padding) 0.5rem var(--block-bottom-padding);
+    background-color: var(--control-buttons-bg-color);
+    overflow: auto;
+}
+
+.dialog-body.hidden {
+    height: 0;
+    padding: 0;
+}
+
+.dialog-body.visible {
+    height: calc(
+            100%
+            - 2 * var(--block-top-padding)
+            - 2 * var(--block-bottom-padding)
+            - var(--header-height)
+            - var(--footer-height)
+    );
+}
+
+.dialog-footer {
+    /*display: flex;*/
+    /*flex-direction: row-reverse;*/
+    padding: var(--block-top-padding) 0.5rem var(--block-bottom-padding);
+    background-color: var(--stream-bg-color);
+    height: var(--footer-height);
+    overflow: hidden;
+}
+
+.dialog-footer span.subtitle {
+    font-weight: lighter;
+    line-height: var(--footer-height);
+    float: left;
+}
+
+.dialog-footer button {
+    padding: var(--button-top-padding) 0.5rem var(--button-bottom-padding);
+    margin: 0 0 0 0.5rem;
+    border-radius: 0.3rem;
+    /*background-color: var(--main-bg-color);*/
+    color: var(--button-text-color);
+    border: 1px solid var(--button-border-color);
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0);
+    height: var(--footer-height);
+    float: right;
+}
+
+.dialog-footer button:disabled {
+    cursor: not-allowed;
+    color: var(--text-color-light);
+}
+
+.controls .label {
+    grid-column: labels;
+}
+
+.controls .input {
+    grid-column: controls;
+    box-sizing: border-box;
+    margin: 0;
+    /*height: 2.75ex;*/
+}
+
+.controls .button {
+    grid-column: controls;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: [labels] 35% [controls] 65%;
+    padding: 1rem;
+    grid-gap: 0.2rem;
+    align-items: center;
+}
+
+:root {
+    --device-border-color: hsl(0, 0%, 82%);
+    --device-list-stripe-color: hsl(0, 0%, 96%);
+    --device-list-default-color: hsl(0, 0%, 100%);
+    --device-list-hover-color: hsl(218, 67%, 95%);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --device-border-color: hsl(0, 0%, 32%);
+        --device-list-stripe-color: hsl(0, 0%, 16%);
+        --device-list-default-color: hsl(0, 0%, 14%);
+        --device-list-hover-color: hsl(218, 17%, 18%);
+    }
+}
+
+
+body.list {
+    height: auto;
+    width: auto;
+    overflow: auto;
+}
+
+#devices {
+    padding: 20px 0;
+    width: 100%;
+    height: calc(100% - 40px);
+    overflow-y: auto;
+}
+
+body.stream #devices {
+    background-color: var(--device-list-default-color);
+    opacity: .8;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+
+body.list #device_list_menu {
+    display: none;
+}
+
+#device_list_menu {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 4;
+}
+
+#devices .device-list button {
+    font-size: var(--font-size);
+    color: var(--button-text-color);
+}
+
+#devices .device-list div.device:nth-child(2n+1){
+    background-color: var(--device-list-default-color);
+}
+
+#devices .device-list div.device:nth-child(2n){
+    background-color: var(--device-list-stripe-color);
+}
+
+#devices .device-header {
+    padding: 2px 0;
+}
+
+#devices .device-header div {
+    display: inline-flex;
+}
+
+#devices .device-name {
+    font-size: 120%;
+}
+
+#devices .device-model {
+    font-size: 110%;
+}
+
+#devices .device-serial {
+    color: var(--url-color);
+    font-size: 80%;
+    margin-left: 6px;
+}
+
+#devices .device-version {
+    font-size: 100%;
+    margin-left: 6px;
+    align-items: baseline;
+}
+
+#devices .device-version .sdk-version {
+    font-size: 75%;
+    color: var(--url-color);
+    margin-left: 0.2em;
+}
+
+#devices .device-state {
+    border-radius: 25px;
+    background-color: red;
+    font-size: 80%;
+    margin-left: 6px;
+    width: 1em;
+    height: 1em;
+}
+
+#devices .device.active .device-state {
+    background-color: green;
+}
+
+#devices .device-list {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+#devices .device-list {
+    border-spacing: 0;
+    border-collapse: collapse;
+    font-family: monospace;
+    font-size: var(--font-size);
+}
+
+#devices .device-list div.device {
+    padding: 5px 20px 5px;
+}
+
+#devices .device-list div.device:hover {
+    background-color: var(--device-list-hover-color)
+}
+
+#devices .device-list div.device select {
+    color: var(--text-color);
+    background-color: var(--main-bg-color);
+    margin-left: 0;
+    border: none;
+}
+
+#devices .device-list div.device:hover select {
+    background-color: var(--device-list-hover-color);;
+}
+
+#devices .device-list div.desc-block {
+    margin: .3em;
+    display: inline-flex;
+}
+
+#devices .device-list div.desc-block.hidden {
+    display: none;
+}
+
+#devices .device-list div.desc-block.stream,
+#devices .device-list div.desc-block.server_pid,
+#devices .device-list div.desc-block.net_interface {
+    border: 1px solid var(--device-border-color);
+    border-radius: .3em;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#devices .device-list div.device div.desc-block.stream button.action-button {
+    color: var(--button-text-color);
+}
+
+#devices .device-list div.desc-block button {
+    fill: var(--text-color)
+}
+
+#devices .device-list div.desc-block button > span {
+    padding: 0 .5em;
+}
+
+#devices .device-list div.desc-block button > span,
+#devices .device-list div.desc-block button > svg {
+    vertical-align: middle;
+}
+
+#devices .device-list div.desc-block button > svg {
+    width: var(--font-size);
+    height: var(--font-size);
+}
+
+#devices .device-list div.desc-block button > svg > path {
+    fill: var(--text-color);
+}
+
+#devices .device-list .device.not-active div.desc-block button > svg > path {
+    fill: var(--text-color-light);
+}
+
+#devices .device-list .device.not-active select {
+    color: var(--text-color-light);
+}
+
+#devices .device-list .device.not-active {
+    color: var(--text-color-light);
+}
+
+#devices .device-list .device.not-active a {
+    color: var(--link-color-light);
+}
+
+#devices .device-list .device.not-active a:visited {
+    color: var(--link-color_visited-light);
+}
+
+#devices .device-list div.device div.desc-block .action-button {
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    color: inherit;
+}
+
+#devices .device-list div.device div.desc-block .action-button.update-interfaces-button {
+    margin-right: 0;
+}
+
+#devices .device-list div.device div.desc-block .action-button.active {
+    cursor: pointer;
+}
+
+#devices .device-list .device.active div.desc-block .action-button:hover {
+    color: var(--kill-button-hover-color);
+}
+
+#devices .device-list .device.active div.desc-block button.action-button:hover > svg > path {
+    fill: var(--kill-button-hover-color);
+}
+
+#devices .tracker-name {
+    padding: 5px 20px 5px;
+    font-size: larger;
+    font-weight: bolder;
+}
+
